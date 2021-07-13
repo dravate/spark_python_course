@@ -27,11 +27,14 @@ print(a + b)
 a = "Hari"
 b = "Sadu"
 
-print(a + b)
+new_string = a + b
+print(new_string)
+
 # Look how + reacts to different type of variables
 a = 10
 b = "Hari"
 #print(a+b)
+
 
 # type built in function
 print (type(a))
