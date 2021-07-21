@@ -44,7 +44,7 @@ print (f.closed)
 ```python 
 
 for i in range(5):
-    with open ("data.txt", "w"):
+    with open ("data.txt", "w") as f:
         f.write("Number: ", i)
 
 with open("data.txt", "w") as fr:
