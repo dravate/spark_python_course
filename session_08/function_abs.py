@@ -4,4 +4,8 @@ def absolute_value(num):
 	else:
 		return -num
 
+abs = absolute_value(2)
+print (abs)
+
+
 

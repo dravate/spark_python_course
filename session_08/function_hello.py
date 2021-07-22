@@ -1,12 +1,12 @@
-name = "Hari Sadu"
+name_inital = "Hari Sadu"
 
-def hellofunction(name=None):
+hellofunction()
+
+def hellofunction(name = "Hari Sadu" ):
     '''Hello Function Demonstration'''
     if name: 
         print ("Hello ", name, "!")
     else: 
         print ("Hello Function!")
 
-
-hellofunction()
 
