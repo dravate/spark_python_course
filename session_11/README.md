@@ -51,5 +51,26 @@ conn.close()
 ```python 
 
 
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+c.execute("INSERT INTO stocks VALUES('2021-07-26', 'BUY', 'GOOG', 100, 35.50)")
+
+conn.commit()
+conn.close()
+
 
 ```
+
+* Five 
+
+```python 
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+symbol = 'GOOG'
+c.execute("SELECT * from stocks where symbol='%s'" % symbol)
+print(c.fetchone())
+
+```
+
