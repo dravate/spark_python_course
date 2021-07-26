@@ -13,3 +13,12 @@ CREATE TABLE presidents (
 
 ```
 
+* Two 
+
+```sql 
+
+INSERT INTO presidents (id, name, age) values (1, 'Donalt T', 76);
+INSERT INTO presidents (id, name, age) values (1, 'Donalt T', 78);
+
+```
+
