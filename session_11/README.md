@@ -74,3 +74,71 @@ print(c.fetchone())
 
 ```
 
+* Six
+
+```python 
+
+purchases = [
+             ('2020-07-26', 'BUY', 'IBM', 1000, 45.00),
+             ('2020-07-26', 'BUY', 'MSFT', 1000, 45.00),
+             ('2020-07-26', 'BUY', 'GOOG', 1000, 45.00),
+             ('2020-07-26', 'SELL', 'IBM', 500, 65.00),
+           ]
+
+purchases
+
+c.executemany(
+        'INSERT into stocks values(?, ?, ?, ? , ?)', purchases
+        )
+
+for row in c.execute("SELECT * from stocks ORDER BY PRICE"):
+    print (row)
+
+
+```
+
+* Seven 
+
+```sql 
+
+create table project (
+    name        text primary key,
+    description text,
+    deadline    date
+);
+
+create table task (
+    id           integer primary key autoincrement not null,
+    priority     integer default 1,
+    details      text,
+    status       text,
+    deadline     date,
+    completed_on date,
+    project      text not null references project(name)
+);
+
+
+```
+
+* Eight 
+
+```sql 
+
+create table project (
+    name        text primary key,
+    description text,
+    deadline    date
+);
+
+create table task (
+    id           integer primary key autoincrement not null,
+    priority     integer default 1,
+    details      text,
+    status       text,
+    deadline     date,
+    completed_on date,
+    project      text not null references project(name)
+);
+
+```
+
