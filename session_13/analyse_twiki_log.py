@@ -1,10 +1,32 @@
 import sys
 import os
 
-# Read the File
+class Useractivity:
+    username=''
+    activity=[]
+    def __init__(self, username, activity):
+        self.username = username
+        self.activity = activity
+    def activity_count(self):
+        return len(self.activity)
+    def __str__(self):
+        return self.username
 
+
+def get_count(e):
+    '''
+    helps with sorting
+    :param e:
+    :return count:
+    '''
+    return e.activity_count()
 
 def get_lines_list (log_file):
+    '''
+    Helps read the log file and return the list
+    :param log_file:
+    :return: list with log lines as elements
+    '''
     log_lines = []
     with open (log_file, 'r')  as mylog:
         for line in mylog.readlines():
@@ -12,19 +34,15 @@ def get_lines_list (log_file):
 
     return log_lines
 
-def get_activity_count(user, log_dictionary):
-    pass
-
 def get_fields( line ):
-    # line = '| 2017-01-01 - 07:54:57 | BenazirBhutto | edit | Fullgc.WebHome |  | 171.155.32.163 | '
-    line_array = line.split('|')
-    # Better ways, use regex, remove spaces
-    #TODO - use map
-    #new_array = []
-    #for element in line_array:
-    #    new_array.append(element.strip())
-    new_array = map(lambda element: element.strip(), line_array)
-    return list(new_array)
+    '''
+    :param line:
+    :return list of attributes from line
+     line = '| 2017-01-01 - 07:54:57 | BenazirBhutto | edit | Fullgc.WebHome |  | 171.155.32.163 | '
+    '''
+    line_fields = line.split('|') # The fields has space charactors
+    line_fields  = map(lambda element: element.strip(), line_fields)
+    return list(line_fields) # convert hat to list
 
 def create_dictionary_user_activity(user_activity_lines):
     #print (user_activity_lines)
@@ -44,10 +62,23 @@ def create_dictionary_user_activity(user_activity_lines):
         print (line)
 
 if __name__ == '__main__':
-    #  python analyse_twiki_log.py TWiki_Application.log OprahWinfrey
-    # execute this script as above line
-    #print(sys.argv)
-    #print (len(sys.argv))
+    '''
+    Log Lines Look as below: 
+    
+      | 2017-01-01 - 07:01:43 | JawaharlalNehru | view | Main.WebHome | Mozilla | 253.111.182.73 | 
+      | 2017-01-01 - 07:01:48 | AlbertEinstein | view | Main.WebHome | Mozilla | 201.36.26.7 | 
+       timestamp| UserName| Activity| Web.Topicname | Client |IP Address
+   
+    Typical Questions: 
+    1. Print activity of particular user
+    2. Get the list of unique users 
+    3. Find Top 5 Active users 
+    4. Find Most Busy Day
+    5. Which IP was used most? 
+    6. Which Topic is Most Read (view) 
+    7. Which Topic was created most collaborative way? 
+    '''
+
     if len(sys.argv) != 3:
         print ("check your arguments")
         sys.exit(0)
@@ -65,28 +96,12 @@ if __name__ == '__main__':
 
 
     log_lines = get_lines_list(log_file)
-    #for element in log_lines[0:4]:
-    #    print (element.strip())
-    #sys.exit(0)
 
     # I have read the log file, has lines in list
-    '''
-    | 2017-01-01 - 07:01:43 | JawaharlalNehru | view | Main.WebHome | Mozilla | 253.111.182.73 | 
-    | 2017-01-01 - 07:01:48 | AlbertEinstein | view | Main.WebHome | Mozilla | 201.36.26.7 | 
-     timestamp| UserName| Activity| Web.Topicname | Client |IP Address
-    TODO: print activity of particular user
-    1. Get the list of unique users 
-    2. Print Activity in-front of each user 
-    3. How about finding most active User? 
-    4. How about - which IP was used most? 
-    5. How about finding busiest Day? 
-    
-    '''
+
     #for line in log_lines[0:4]:
     #    line_fields =  get_fields(line)
     #    #print (line_fields)
-    #sys.exit(0)
-
 
 
     unique_users = {}
@@ -116,7 +131,20 @@ if __name__ == '__main__':
                    .
                    .
           ]
+          
     '''
+    user_classes = []
+    for user, activity in unique_users.items():
+        tmp_userinstance = Useractivity(user, activity)
+        user_classes.append(tmp_userinstance)
+    print (user_classes[0].activity_count())
+    user_classes.sort(key=get_count)
+    print (user_classes[-1].activity_count())
+    active_u = user_classes[-5:]
+    for e in active_u:
+        print (e, e.activity_count())
+
+    sys.exit(0);
     user_and_count = []  # [[usernanme, count], ...]
     for tmp_user in unique_users.keys():
         #print(tmp_user, len(unique_users[tmp_user]))
