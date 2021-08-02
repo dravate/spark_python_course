@@ -137,12 +137,18 @@ if __name__ == '__main__':
     for user, activity in unique_users.items():
         tmp_userinstance = Useractivity(user, activity)
         user_classes.append(tmp_userinstance)
-    print (user_classes[0].activity_count())
+
+
+    #print (user_classes[0])
+    #print(user_classes[1])
+    #sys.exit(0);
+
     user_classes.sort(key=get_count)
-    print (user_classes[-1].activity_count())
-    active_u = user_classes[-5:]
+    #print (user_classes[-1], user_classes[-1].activity_count())
+    active_u = user_classes[-10:]
     for e in active_u:
         print (e, e.activity_count())
+
 
     sys.exit(0);
     user_and_count = []  # [[usernanme, count], ...]

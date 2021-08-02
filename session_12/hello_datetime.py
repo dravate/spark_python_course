@@ -1,10 +1,12 @@
 from datetime import datetime
-
+import sys
 now = datetime.now()
+
 print('The dateformat: {}'.format(now))
 print ('The year is = {}'.format(now.year))
 print ('The month is = {}'.format(now.month))
 print ('The day is = {} '.format(now.day))
+
 
 # datetime(year, month, day[, hour[, minute[, second[, microsecond[,tzinfo]]]]]) 
 #
