@@ -1,6 +1,7 @@
 import re
 
 pattern = 'Hello'
+
 text = 'Hello Python Folks, How are you?'
 
 match = re.search(pattern, text)

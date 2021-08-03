@@ -1,7 +1,8 @@
 import re
 
 # Precompile the patterns
-regexes = [ re.compile(p) for p in ['Hello', 'Donald'] ]
+regexes = [ re.compile(p) for p in ['  Hello'] ]
+
 text = 'Hello Python folks, How are you doing today?'
 
 print('Text: {!r}\n'.format(text))
